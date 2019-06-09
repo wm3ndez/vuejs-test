@@ -1,10 +1,35 @@
-<!DOCTYPE html>
+{% load staticfiles %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Poor Man's Twitter</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="{% static 'styles.css' %}">
+
 </head>
 <body>
 
+<div class="content" id="app">
+    {% verbatim %}
+    <div class="">
+        <h3>Poor Man's Twitter</h3>
+    </div>
+
+    <div id="tweet-form">
+        <input type="text" id="name">
+        <textarea id="message"></textarea>
+    </div>
+    <div id="message-list">
+        <div v-for="tweet in tweets">
+            <span class="username">{{ tweet.name }}</span> <span class="timestamp">{{ tweet.created_at }}</span>
+            <br/>
+            <span class="tweet-message">{{ tweet.message }}</span>
+        </div>
+    </div>
+    {% endverbatim %}
+</div>
+
+<script src="{% static 'main.js' %}"></script>
 </body>
 </html>
