@@ -7,6 +7,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link href="{% static 'styles.css' %}">
 
+    <style>
+        table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        table tr {
+        }
+    </style>
 </head>
 <body>
 
@@ -17,15 +26,29 @@
     </div>
 
     <div id="tweet-form">
-        <input type="text" id="name">
-        <textarea id="message"></textarea>
+        <form v-on:submit.prevent="insertTweet">
+            <input type="text" id="name" v-model="username">
+            <textarea id="message" v-model="msg"></textarea>
+            <button> Tweet </button>
+        </form>
     </div>
     <div id="message-list">
-        <div v-for="tweet in tweets">
-            <span class="username">{{ tweet.name }}</span> <span class="timestamp">{{ tweet.created_at }}</span>
-            <br/>
-            <span class="tweet-message">{{ tweet.message }}</span>
-        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Time</th>
+                <th>Message</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="tweet in tweets" v-bind:key="tweet.id">
+                <td>{{ tweet.created_at }}</td>
+                <td>{{ tweet.message }}</td>
+                <td>{{ tweet.name }}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     {% endverbatim %}
 </div>
