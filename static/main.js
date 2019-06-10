@@ -25,10 +25,7 @@
         mounted() {
             fetch(ENDPOINT)
                 .then(rs => rs.json())
-                .then(rs => {
-                    console.log(rs);
-                    app.tweets = rs
-                })
+                .then(rs => app.tweets = rs)
                 .catch(er => console.log(er))
 
         }
