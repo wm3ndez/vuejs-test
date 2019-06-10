@@ -29,22 +29,19 @@
         </nav>
     </header>
 
-    {% verbatim %}
     <div class="row">
         <div class="col">
             <form v-on:submit.prevent="insertTweet">
                 <div class="row">
                     <div class="col-3 ">
                         <input type="text" v-model="username"
-                               class="form-control" placeholder="Name">
+                               class="form-control" placeholder="Name" maxlength="32">
                     </div>
-                    <div class="col-9">
-                        <textarea id="message" v-model="msg"
-                                  class="form-control" maxlength="50" placeholder="Message..."></textarea>
+                    <div class="col-8">
+                        <input id="message" v-model="msg"
+                               class="form-control" maxlength="50" placeholder="Message..."/>
                     </div>
-                </div>
-                <div class="row action-buttons">
-                    <div class="col">
+                    <div class="col-1">
                         <button class="btn btn-success float-right"> Tweet</button>
                     </div>
                 </div>
@@ -61,15 +58,16 @@
             </tr>
             </thead>
             <tbody>
+            {% verbatim %}
             <tr v-for="tweet in tweets" v-bind:key="tweet.id">
                 <td>{{ tweet.created_at }}</td>
                 <td>{{ tweet.message }}</td>
                 <td>{{ tweet.name }}</td>
             </tr>
+            {% endverbatim %}
             </tbody>
         </table>
     </div>
-    {% endverbatim %}
 </div>
 
 <script src="{% static 'main.js' %}"></script>
