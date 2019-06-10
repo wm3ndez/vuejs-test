@@ -7,33 +7,52 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link href="{% static 'styles.css' %}">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <style>
-        table td {
-            padding: 8px;
-            border: 1px solid #ddd;
+        header {
+            margin-bottom: 8px;
         }
 
-        table tr {
+        .action-buttons, #message-list {
+            margin-top: 8px;
         }
     </style>
 </head>
 <body>
 
-<div class="content" id="app">
-    {% verbatim %}
-    <div class="">
-        <h3>Poor Man's Twitter</h3>
-    </div>
+<div class="container" id="app">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Poor Man's Twitter</a>
+        </nav>
+    </header>
 
-    <div id="tweet-form">
-        <form v-on:submit.prevent="insertTweet">
-            <input type="text" id="name" v-model="username">
-            <textarea id="message" v-model="msg"></textarea>
-            <button> Tweet </button>
-        </form>
+    {% verbatim %}
+    <div class="row">
+        <div class="col">
+            <form v-on:submit.prevent="insertTweet">
+                <div class="row">
+                    <div class="col-3 ">
+                        <input type="text" v-model="username"
+                               class="form-control" placeholder="Name">
+                    </div>
+                    <div class="col-9">
+                        <textarea id="message" v-model="msg"
+                                  class="form-control" maxlength="50" placeholder="Message..."></textarea>
+                    </div>
+                </div>
+                <div class="row action-buttons">
+                    <div class="col">
+                        <button class="btn btn-success float-right"> Tweet</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div id="message-list">
-        <table>
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>Time</th>
